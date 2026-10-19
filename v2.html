@@ -242,8 +242,7 @@ rim:'On seat (low-speed compression): oil exits the port just inside the Ø30 se
 open:'Fully open (high-speed compression): with the float taken up, the trampoline stack moves into the cup until its centre reaches the stop collar. The cup vents as it moves. Float 0.50 + travel 0.50 = 1.00 total.'};
 function drawFlow(s){
  const sk=fstack(s);let o=sk+`<g transform="matrix(-1 0 0 1 600 0)">${sk}</g>`+fspring(s);
- if(op>0.005){const g=10+fdz(FHUB,s),wd=Math.max(1.5,Math.min(9,g*0.6)),yc=FPF+g/2;o+=`<path d="M122 24 L122 86 C125 118 136 146 140 166 C142 ${yc} 132 ${yc} 122 ${yc} C110 ${yc} 108 ${yc+6} 108 ${yc+22} L108 322" fill="none" stroke="var(--flow)" stroke-width="${wd}" stroke-linecap="round" stroke-linejoin="round" opacity="0.85" marker-end="url(#fl)"/>`;
-  const ftop=FR-3.30*FS+fdz(FHUB,s);for(const x of[175,205,395,425]){if(ftop-FPF>8)o+=`<line x1="${x}" y1="${FPF+1}" x2="${x}" y2="${(ftop-1).toFixed(1)}" stroke="var(--flow)" stroke-width="1.4" marker-end="url(#fa)"/>`}}
+ if(op>0.005){const g=10+fdz(FHUB,s),wd=Math.max(1.5,Math.min(9,g*0.6)),yc=FPF+g/2;o+=`<path d="M122 24 L122 86 C125 118 136 146 140 166 C142 ${yc} 132 ${yc} 122 ${yc} C110 ${yc} 108 ${yc+6} 108 ${yc+22} L108 322" fill="none" stroke="var(--flow)" stroke-width="${wd}" stroke-linecap="round" stroke-linejoin="round" opacity="0.85" marker-end="url(#fl)"/>`;}
  if(s==='open')o+='<path d="M206 260 C180 260 150 260 124 260" fill="none" stroke="var(--flow)" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#fa)"/>';
  document.getElementById('fdyn').innerHTML=o;
  let l='';
