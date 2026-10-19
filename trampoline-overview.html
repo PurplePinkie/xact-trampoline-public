@@ -57,24 +57,10 @@ td.n{white-space:nowrap;font-weight:600}
 <h1>WP XACT trampoline mid valve: how it works</h1>
 <p class="muted">An illustrative section of the trampoline mid valve used on 2021 WP XACT 5448 forks (KTM 250/300 XC, Husqvarna TX 300). Move the slider or use the buttons to watch the float open and the trampoline stack travel to the stop collar. Not to scale. Dimensions vary by model and year, and this is not a tuning recommendation.</p>
 
-<div class="panel">
-  <div class="drawing"><svg id="cup" viewBox="0 60 900 344" role="img" aria-labelledby="t d"><title id="t">Cross-section of the 2021 trampoline cup with midvalve piston</title><desc id="d">Scaled section showing the cup wall and trampoline seat, stop collar, hub, shaft, float spring, compression stack and the midvalve piston, with heights from the cup bottom.</desc></svg></div>
-  <div class="controls">
-    <span>Stack position:</span>
-    <div class="seg" role="group" aria-label="Stack position">
-      <button data-st="rest" aria-pressed="true">At rest: on piston</button><button data-st="rim" aria-pressed="false">On seat: 0.50 off piston</button><button data-st="open" aria-pressed="false">Fully open: on stop collar, 1.00 off piston</button>
-    </div>
-    <label style="flex:1 1 320px;min-width:260px">Opening <input type="range" class="opening" min="0" max="1" step="0.01" value="0" aria-label="Opening, mm"> <span class="opv readout" style="min-width:4.5em;text-align:right">0.00 mm</span> <span class="oph" style="font-weight:600;min-width:8.5em"></span></label>
-    <label><input type="checkbox" id="full" checked> Show main stack</label>
-    <label><input type="checkbox" id="spr" checked> Show spring</label>
-  </div>
-  <p class="readout" id="readout" style="margin:10px 0 0"></p>
-  <div class="legend"><span><i style="background:var(--metal)"></i>Cup and tap (section)</span><span><i style="background:var(--metal);opacity:.55"></i>MV piston (schematic)</span><span><i style="background:var(--shim)"></i>Trampoline stack</span><span><i style="background:var(--main)"></i>Main stack</span><span><i style="background:var(--spring)"></i>Float spring</span><span><i style="background:var(--float)"></i>Float</span><span><i style="background:var(--gap)"></i>Trampoline travel</span></div>
-</div>
 
 <h2>Flow by stage</h2>
 <div class="panel flow">
-  <div class="drawing"><svg id="flowsvg" viewBox="0 0 900 410" role="img" aria-labelledby="ft fd"><title id="ft">Midvalve oil flow by stage</title><desc id="fd">Illustrated section through the one-piece cup and tap and the midvalve piston, cut through one compression port and one rebound port, showing the face stack, spring and oil flow for the selected stack position.</desc>
+  <div class="drawing"><svg id="flowsvg" viewBox="0 0 900 428" role="img" aria-labelledby="ft fd"><title id="ft">Midvalve oil flow by stage</title><desc id="fd">Illustrated section through the one-piece cup and tap and the midvalve piston, cut through one compression port and one rebound port, showing the face stack, spring and oil flow for the selected stack position.</desc>
 <defs>
 <marker id="fl" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" orient="auto"><path d="M0 0L10 5L0 10Z" fill="var(--flow)"/></marker>
 <marker id="fa" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
@@ -89,7 +75,7 @@ td.n{white-space:nowrap;font-weight:600}
 <polyline points="336,16 340,20 336,24 340,28 336,32 340,36 336,40 340,44 336,48 340,52 336,56" fill="none" stroke="var(--metal-edge)" stroke-width="0.8"/>
 <path d="M264 86 L108 86 L100 94 L100 162 L108 170 L264 170 Z M110 86 L134 86 C138 120 150 140 152 170 L128 170 C126 140 114 120 110 86 Z" fill="url(#fh)" fill-rule="evenodd" opacity="0.55" stroke="var(--metal-edge)" stroke-width="0.8" stroke-dasharray="4 3" stroke-linejoin="round"/>
 <path d="M336 86 L492 86 L500 94 L500 162 L492 170 L336 170 Z M424 86 L446 86 C458 116 486 142 491 170 L481 170 C474 146 436 116 424 86 Z" fill="url(#fh)" fill-rule="evenodd" opacity="0.55" stroke="var(--metal-edge)" stroke-width="0.8" stroke-dasharray="4 3" stroke-linejoin="round"/>
-<rect x="140" y="82" width="124" height="4" fill="var(--shim)" stroke="var(--panel)" stroke-width="0.6"/><rect x="160" y="78" width="104" height="4" fill="var(--shim2)" stroke="var(--panel)" stroke-width="0.6"/><rect x="180" y="74" width="84" height="4" fill="var(--shim)" stroke="var(--panel)" stroke-width="0.6"/><rect x="336" y="82" width="124" height="4" fill="var(--shim)" stroke="var(--panel)" stroke-width="0.6"/><rect x="336" y="78" width="104" height="4" fill="var(--shim2)" stroke="var(--panel)" stroke-width="0.6"/><rect x="336" y="74" width="84" height="4" fill="var(--shim)" stroke="var(--panel)" stroke-width="0.6"/>
+<rect x="140" y="82" width="124" height="4" fill="var(--muted)" stroke="var(--panel)" stroke-width="0.6"/><rect x="160" y="78" width="104" height="4" fill="var(--metal)" stroke="var(--panel)" stroke-width="0.6"/><rect x="180" y="74" width="84" height="4" fill="var(--muted)" stroke="var(--panel)" stroke-width="0.6"/><rect x="336" y="82" width="124" height="4" fill="var(--muted)" stroke="var(--panel)" stroke-width="0.6"/><rect x="336" y="78" width="104" height="4" fill="var(--metal)" stroke="var(--panel)" stroke-width="0.6"/><rect x="336" y="74" width="84" height="4" fill="var(--muted)" stroke="var(--panel)" stroke-width="0.6"/>
 <polyline points="226,356 240,350 254,362 268,350 282,356" fill="none" stroke="var(--muted)" stroke-width="0.8"/>
 <polyline points="374,356 360,350 346,362 332,350 318,356" fill="none" stroke="var(--muted)" stroke-width="0.8"/>
 <rect x="97" y="114" width="4" height="28" rx="1" fill="var(--shim2)"/><rect x="499" y="114" width="4" height="28" rx="1" fill="var(--shim2)"/>
@@ -104,6 +90,7 @@ td.n{white-space:nowrap;font-weight:600}
 <line x1="180" y1="385" x2="210" y2="385" stroke="var(--flow)" stroke-width="4" stroke-linecap="round"/><text class="lt" x="218" y="389">Oil flow</text>
 <rect x="300" y="380" width="22" height="10" fill="url(#fh)" stroke="var(--metal-edge)" stroke-width="0.8" stroke-linejoin="round"/><text class="lt" x="328" y="389">Cup, hub and tap: one piece</text>
 <rect x="530" y="380" width="22" height="10" fill="url(#fh)" opacity="0.55" stroke="var(--metal-edge)" stroke-width="0.8" stroke-dasharray="4 3"/><text class="lt" x="560" y="389">Piston: schematic</text>
+<rect x="40" y="402" width="22" height="10" fill="var(--shim)"/><text class="lt" x="68" y="411">Trampoline stack</text><rect x="210" y="402" width="22" height="10" fill="var(--main)"/><text class="lt" x="238" y="411">Main stack</text><circle cx="355" cy="407" r="4.5" fill="var(--spring)"/><text class="lt" x="366" y="411">Float spring</text>
 </g>
 </svg></div>
   <div class="controls">
@@ -114,7 +101,7 @@ td.n{white-space:nowrap;font-weight:600}
     <label style="flex:1 1 320px;min-width:260px">Opening <input type="range" class="opening" min="0" max="1" step="0.01" value="0" aria-label="Opening, mm"> <span class="opv readout" style="min-width:4.5em;text-align:right">0.00 mm</span> <span class="oph" style="font-weight:600;min-width:8.5em"></span></label>
   </div>
   <p class="muted" id="fcap" style="margin:8px 0 0;font-size:.95rem"></p>
-  <p class="muted" style="margin:6px 0 0;font-size:.85rem">Illustration only. The piston, ports and rebound stack are schematic. The two sets of position buttons and sliders stay in sync.</p>
+  <p class="muted" style="margin:6px 0 0;font-size:.85rem">Illustration only. The piston, ports and rebound stack are schematic.</p>
 </div>
 
 <h2>How it works</h2>
@@ -166,6 +153,7 @@ function vdim(x,h0,h1,label,col,dy=0,ly){const y0=Y(h0),y1=Y(h1);return `<line x
 function ddim(r,h,label,h0){const y=Y(h),ys=h0===undefined?BY+3:Y(h0)+2;let e="";for(const sd of[-1,1]){e+=`<line x1="${X(sd*r)}" y1="${ys}" x2="${X(sd*r)}" y2="${y+5}" stroke="var(--muted)" stroke-width="0.6" stroke-dasharray="2 2"/>`}return e+`<line x1="${X(-r)}" y1="${y}" x2="${X(r)}" y2="${y}" stroke="var(--muted)" stroke-width="0.8" marker-start="url(#a2)" marker-end="url(#a2)"/><text x="${CX}" y="${y-5}" text-anchor="middle" fill="var(--dim)" font-size="13" font-family="Barlow,sans-serif">${label}</text>`}
 function spring(side,top){const w=M.wire,rm=(M.sprI+M.sprO)/2,n=M.coils,p=(top-M.floor-w)/(n-0.5);let o="";for(let k=0;k<n;k++){const h=M.floor+w/2+(k+(side>0?0.5:0))*p;o+=`<circle cx="${X(side*rm).toFixed(1)}" cy="${Y(h).toFixed(1)}" r="${(w/2*S).toFixed(1)}" fill="var(--spring)" stroke="var(--panel)" stroke-width="0.6"/>`}return o}
 function draw(){
+  if(!document.getElementById("cup")){syncUI(opKey());return}
   const base=baseOf(), top=base+STACK, gap=M.pFace-top, fl=flOf(), dd=dOf(), flLeft=M.float-fl;
   let s=`<defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="var(--metal)"/><line x1="0" y1="0" x2="0" y2="6" stroke="var(--metal-edge)" stroke-width="0.6" opacity="0.5"/></pattern>
   <marker id="a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L5 5L1 9" fill="none" stroke="context-stroke" stroke-width="1.5"/></marker>
@@ -227,7 +215,7 @@ function fspring(s){const top=FR+fdz(228,s),r=3.5,n=5,p=(FFL-top-2*r)/(n-0.5);le
 function flbl(px,py,ty,t){return `<line class="leader" x1="${px}" y1="${py}" x2="534" y2="${ty-4}"/><text class="lt" x="540" y="${ty}">${t}</text>`}
 const FCAP={rest:'At rest: no flow. The float spring holds the main stack sealed on the MV piston face, covering the compression port exits; the trampoline face shim sits one float distance above the trampoline seat.',
 rim:'On seat (low-speed compression): oil exits the compression port just inside the main stack seat and lifts the whole stack off the MV piston face, against the float spring only, until the trampoline face shim rests on the trampoline seat. Oil escapes past the main stack edge. This is the float.',
-open:'Fully open (high-speed compression): with the float taken up, the trampoline stack moves into the cup until its centre reaches the stop collar. The cup vents as it moves. Float 0.50 + travel 0.50 = 1.00 total.'};
+open:'Trampoline travel (high-speed compression): with the float taken up, the trampoline stack moves into the cup, stopping when its centre reaches the stop collar. The cup vents as it moves. Float 0.50 + travel 0.50 = 1.00 total.'};
 function drawFlow(s){
  const sk=fstack(s);let o=sk+`<g transform="matrix(-1 0 0 1 600 0)">${sk}</g>`+fspring(s);
  if(op>0.005){const g=10+fdz(FHUB,s),wd=Math.max(1.5,Math.min(9,g*0.6)),yc=FPF+g/2;o+=`<path d="M122 24 L122 86 C125 118 136 146 140 166 C142 ${yc} 132 ${yc} 122 ${yc} C110 ${yc} 108 ${yc+6} 108 ${yc+22} L108 322" fill="none" stroke="var(--flow)" stroke-width="${wd}" stroke-linecap="round" stroke-linejoin="round" opacity="0.85" marker-end="url(#fl)"/>`;
@@ -258,8 +246,6 @@ const OPS={rest:0,rim:0.5,open:1.0};
 function setOp(v){op=v;draw();drawFlow(flowKey())}
 document.querySelectorAll(".seg button").forEach(b=>b.onclick=()=>setOp(OPS[b.dataset.st]));
 document.querySelectorAll(".opening").forEach(sl=>sl.oninput=e=>setOp(parseFloat(e.target.value)));
-document.getElementById("full").onchange=e=>{showFull=e.target.checked;draw()};
-document.getElementById("spr").onchange=e=>{showSpr=e.target.checked;draw()};
 draw();drawFlow(flowKey());
 </script>
 </body>
