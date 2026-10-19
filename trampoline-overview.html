@@ -108,15 +108,16 @@ td.n{white-space:nowrap;font-weight:600}
 <ol style="margin:0;padding-left:1.3em">
 <li style="margin:0 0 8px"><b>Float.</b> At rest, the float spring holds the main stack closed against the MV piston face. Oil pressure lifts the whole stack off the face against that light spring. No shim bends, so this stage adds almost no resistance. It ends when the trampoline face shim lands on the trampoline seat.</li>
 <li style="margin:0"><b>Trampoline travel.</b> With its outer edge now supported by the trampoline seat, the trampoline stack dishes into the cup as the clamp shim pushes down on it. It stops when its centre reaches the stop collar.</li>
+<li style="margin:8px 0 0"><b>Main stack bending.</b> Once the float is used up, increasing flow bends the main stack away from the MV piston face around the clamp shim, opening a wider path for the oil.</li>
 </ol>
-<p class="muted" style="margin:12px 0 0;font-size:.9rem">Float and travel (0.50 each as drawn) are typical for this range of forks and differ by model and year. For illustration, the main stack is drawn without bending. Illustrative and not to scale; not a tuning recommendation.</p>
+<p class="muted" style="margin:12px 0 0;font-size:.9rem">Float and travel (0.50 each as drawn) are typical for this range of forks and differ by model and year. The amount and timing of the main stack bending are illustrative. Illustrative and not to scale; not a tuning recommendation.</p>
 </div>
 <h2>Terms</h2>
 <div class="panel tablewrap"><table>
 <thead><tr><th>Term</th><th>Meaning</th></tr></thead><tbody>
 <tr><td class="n">MV piston</td><td>The mid valve piston. Compression oil passes through its ports to the main stack on its face.</td></tr>
-<tr><td class="n">Main stack</td><td>The working shim stack seated on the MV piston face.</td></tr>
-<tr><td class="n">Clamp shim</td><td>The smallest shim of the main stack. It rests on the trampoline stack and pushes it as the valve opens. Extra clamp shims are sometimes used as spacers.</td></tr>
+<tr><td class="n">Main stack</td><td>The working shim stack seated on the MV piston face. Once the float is used up it bends progressively as the flow increases.</td></tr>
+<tr><td class="n">Clamp shim</td><td>The smallest shim of the main stack. It rests on the trampoline stack and pushes it as the valve opens. The main stack bends around its edge. Extra clamp shims are sometimes used as spacers.</td></tr>
 <tr><td class="n">Trampoline stack</td><td>The supporting shims from the trampoline face shim up to the clamp shim. They move with the whole stack through the float, then dish into the cup.</td></tr>
 <tr><td class="n">Trampoline face shim</td><td>The largest shim at the cup end of the stack. It lands on the trampoline seat.</td></tr>
 <tr><td class="n">Trampoline seat</td><td>The rim of the cup that the trampoline face shim lands on. It ends the float and supports the outer edge of the trampoline stack.</td></tr>
@@ -204,26 +205,28 @@ const FBACK=[[156,.40],[180,.15],[192,.15],[204,.15],[216,.10],[240,.15]];
 const FFACE=[[2,222,.10],[2,204,.10],[2,192,.10],[2,180,.10],[2,168,.10],[2,156,.10],[2,144,.10],[2,132,.10],[6,120,.10]];
 function fw(x){let u=Math.max(0,Math.min(1,(x-156)/(240-156)));return u*u*(3-2*u)}
 function fdz(x,s){return -10+Math.min(op,0.5)*20+Math.max(op-0.5,0)*(FSH-FR)*2*fw(x)}
+function bendAt(x){const bf=Math.max(0,Math.min(1,(op-0.5)/0.5));if(bf<=0||x>=222)return 0;const u=(222-x)/(222-120);return 16*bf*u*u}
 function fpoly(xo,y0,t,dzf,fill){const xs=[];for(let x=FHUB;x>xo;x-=3)xs.push(x);xs.push(xo);const T=xs.map(x=>x+','+(y0+dzf(x)-t*FS).toFixed(2));const B=xs.map(x=>x+','+(y0+dzf(x)).toFixed(2)).reverse();return `<polygon points="${T.concat(B).join(' ')}" fill="${fill}" stroke="var(--panel)" stroke-width="0.8" stroke-linejoin="round"/>`}
 function fstack(s){let o='',c=0,i=0;
  for(const[xo,t]of FBACK){o+=fpoly(xo,FR-c*FS,t,x=>fdz(x,s),(i++%2)?'var(--shim2)':'var(--shim)');c+=t}
  const off=fdz(FHUB,s);
- for(const[q,xo,t]of FFACE){for(let k=0;k<q;k++){o+=fpoly(xo,FR-c*FS,t,()=>off,(i++%2)?'var(--main2)':'var(--main)');c+=t}}
+ for(const[q,xo,t]of FFACE){for(let k=0;k<q;k++){o+=fpoly(xo,FR-c*FS,t,x=>off+bendAt(x),(i++%2)?'var(--main2)':'var(--main)');c+=t}}
  return o}
 function fspring(s){const top=FR+fdz(228,s),r=3.5,n=5,p=(FFL-top-2*r)/(n-0.5);let o='';for(let k=0;k<n;k++){for(const[x,off]of[[228,0],[372,0.5]]){const y=FFL-r-(k+off)*p;o+=`<circle cx="${x}" cy="${y.toFixed(1)}" r="${r}" fill="var(--spring)" stroke="var(--panel)" stroke-width="0.6"/>`}}return o}
 function flbl(px,py,ty,t){return `<line class="leader" x1="${px}" y1="${py}" x2="534" y2="${ty-4}"/><text class="lt" x="540" y="${ty}">${t}</text>`}
 const FCAP={rest:'At rest: no flow. The float spring holds the main stack sealed on the MV piston face, covering the compression port exits; the trampoline face shim sits one float distance above the trampoline seat.',
 rim:'On seat (low-speed compression): oil exits the compression port just inside the main stack seat and lifts the whole stack off the MV piston face, against the float spring only, until the trampoline face shim rests on the trampoline seat. Oil escapes past the main stack edge. This is the float.',
-open:'Trampoline travel (high-speed compression): with the float taken up, the trampoline stack moves into the cup, stopping when its centre reaches the stop collar. The cup vents as it moves. Float 0.50 + travel 0.50 = 1.00 total.'};
+open:'Trampoline travel and main stack bending (high-speed compression): with the float taken up, the trampoline stack moves into the cup, stopping when its centre reaches the stop collar, while increasing flow bends the main stack away from the MV piston face around the clamp shim. The cup vents as it moves. Float 0.50 + travel 0.50 = 1.00 total.'};
 function drawFlow(s){
  const sk=fstack(s);let o=sk+`<g transform="matrix(-1 0 0 1 600 0)">${sk}</g>`+fspring(s);
- if(op>0.005){const g=10+fdz(FHUB,s),wd=Math.max(1.5,Math.min(9,g*0.6)),yc=FPF+g/2;o+=`<path d="M122 24 L122 86 C125 118 136 146 140 166 C142 ${yc} 132 ${yc} 122 ${yc} C110 ${yc} 108 ${yc+6} 108 ${yc+22} L108 322" fill="none" stroke="var(--flow)" stroke-width="${wd}" stroke-linecap="round" stroke-linejoin="round" opacity="0.85" marker-end="url(#fl)"/>`;}
+ if(op>0.005){const g=10+fdz(FHUB,s)+bendAt(120),wd=Math.max(1.5,Math.min(11,g*0.6)),yc=FPF+g/2;o+=`<path d="M122 24 L122 86 C125 118 136 146 140 166 C142 ${yc} 132 ${yc} 122 ${yc} C110 ${yc} 108 ${yc+6} 108 ${yc+22} L108 322" fill="none" stroke="var(--flow)" stroke-width="${wd}" stroke-linecap="round" stroke-linejoin="round" opacity="0.85" marker-end="url(#fl)"/>`;}
  if(s==='open')o+='<path d="M206 260 C180 260 150 260 124 260" fill="none" stroke="var(--flow)" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#fa)"/>';
  document.getElementById('fdyn').innerHTML=o;
  let l='';
  if(s==='rest')l=flbl(480,172,186,'Sealed on MV piston face')+flbl(444,241,236,'Float gap')+flbl(376,270,282,'Float spring extended');
  if(s==='rim')l=flbl(486,175,180,'Float gap open')+flbl(480,190,206,'Off the MV piston face')+flbl(444,246,246,'On trampoline seat')+flbl(376,270,282,'Float spring compressed');
- if(s==='open')l=flbl(486,180,180,'Float gap open')+flbl(420,250,232,'Trampoline travel')+flbl(354,256,266,'On stop collar')+flbl(444,260,316,'Vent: cup exhausts');
+ const bf=Math.max(0,Math.min(1,(op-0.5)/0.5)),by=FR-3.30*FS+fdz(FHUB,s)+bendAt(120)+6;
+ if(s==='open')l=flbl(486,180,180,'Float gap open')+(bf>0.15?flbl(480,by,206,'Main stack bends'):'')+flbl(420,250,232,'Trampoline travel')+flbl(354,256,266,'On stop collar')+flbl(444,260,316,'Vent: cup exhausts');
  document.getElementById('flab').innerHTML=l;
  document.getElementById('farr').innerHTML=s==='rest'?'':(s==='rim'?'<polygon points="36,300 52,300 52,224 64,224 44,196 24,224 36,224" fill="var(--muted)" opacity="0.7"/>':'<polygon points="36,340 52,340 52,198 64,198 44,166 24,198 36,198" fill="var(--muted)" opacity="0.7"/>');
  document.getElementById('fcap').textContent=FCAP[s];
@@ -238,7 +241,7 @@ function syncUI(key){
   const inTr=op>M.float+0.0005,ph=inTr?"var(--gap)":"var(--float)";
   document.querySelectorAll(".opening").forEach(sl=>{if(Math.abs(sl.value-op)>1e-6)sl.value=op;sl.style.setProperty("--trk",tick+", "+trk);sl.style.setProperty("--ph",ph)});
   document.querySelectorAll(".opv").forEach(e=>e.textContent=op.toFixed(2)+" mm");
-  document.querySelectorAll(".oph").forEach(e=>{e.textContent=inTr?"Trampoline travel":"Float";e.style.color=ph});
+  document.querySelectorAll(".oph").forEach(e=>{e.textContent=inTr?"Travel and bend":"Float";e.style.color=ph});
 }
 const OPS={rest:0,rim:0.5,open:1.0};
 function setOp(v){op=v;draw();drawFlow(flowKey())}
