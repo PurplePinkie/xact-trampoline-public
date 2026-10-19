@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>2021 XACT 5448 midvalve trampoline cup v1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef1f4;--panel:#fff;--ink:#1c232b;--muted:#5b6672;--line:#d3d9e0;--metal:#9aa7b4;--metal-edge:#4f5d6b;--shim:#1f5fae;--shim2:#7aa6dc;--spring:#c4532a;--float:#b26a00;--dim:#1c232b;--gap:#1e7a44;
+ color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161b21;--panel:#1f262e;--ink:#e7ecf1;--muted:#9aa6b2;--line:#33404c;--metal:#56636f;--metal-edge:#aab6c2;--shim:#6ea6ea;--shim2:#3d6597;--spring:#f29a72;--float:#f0b35a;--dim:#e7ecf1;--gap:#6fd19a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#161b21;--panel:#1f262e;--ink:#e7ecf1;--muted:#9aa6b2;--line:#33404c;--metal:#56636f;--metal-edge:#aab6c2;--shim:#6ea6ea;--shim2:#3d6597;--spring:#f29a72;--float:#f0b35a;--dim:#e7ecf1;--gap:#6fd19a;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.5;font-variant-numeric:tabular-nums}
+.wrap{max-width:1040px;margin:0 auto;padding:26px 18px 56px}
+h1{font-family:"Barlow Condensed","Barlow",sans-serif;font-weight:700;font-size:clamp(1.9rem,4.2vw,2.7rem);line-height:1.05;margin:0 0 8px}
+h2{font-family:"Barlow Condensed","Barlow",sans-serif;font-weight:600;font-size:1.45rem;margin:30px 0 10px}
+p{margin:0 0 12px;max-width:72ch}.muted{color:var(--muted)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+.drawing{overflow-x:auto}
+svg{display:block;width:100%;min-width:640px;height:auto}
+.controls{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin-top:12px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{all:unset;cursor:pointer;padding:7px 12px;font-size:.92rem;border-right:1px solid var(--line)}
+.seg button:last-child{border-right:none}
+.seg button[aria-pressed="true"]{background:var(--shim);color:var(--panel);font-weight:600}
+.seg button:focus-visible,label:focus-within{outline:3px solid var(--shim);outline-offset:2px}
+.readout{font-weight:600}
+#opening{-webkit-appearance:none;appearance:none;height:8px;border-radius:4px;background:var(--trk,var(--line));cursor:pointer}
+#opening::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;background:var(--ph,var(--float));border:2px solid var(--panel);box-shadow:0 0 0 1px var(--ph,var(--float))}
+#opening::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--ph,var(--float));border:2px solid var(--panel);box-shadow:0 0 0 1px var(--ph,var(--float))}
+#opening::-moz-range-track{background:transparent}
+#opening:focus-visible{outline:3px solid var(--shim);outline-offset:4px}
+.readout b{color:var(--gap)}
+.readout b.f{color:var(--float)}
+label{display:inline-flex;gap:6px;align-items:center;font-size:.95rem;cursor:pointer}
+table{border-collapse:collapse;width:100%;font-size:.95rem}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:.85rem}
+td.n{white-space:nowrap;font-weight:600}
+.tag{font-size:.78rem;padding:1px 8px;border-radius:10px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.tag.m{border-color:var(--gap);color:var(--gap)}
+.tag.a{border-color:var(--float);color:var(--float)}
+.tablewrap{overflow-x:auto}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.88rem;color:var(--muted);margin-top:8px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>2021 XACT 5448 midvalve trampoline cup <span class="muted" style="font-weight:600;font-size:.6em">v1</span></h1>
+<p class="muted">KTM 250/300 XC / Husqvarna TX 300 2021, setting list 34188U73. One-piece cup and tap. Section through the cup drawn to scale from the owner's caliper measurements. All heights are measured from the cup bottom, where the cup meets the tap (height 0). Dashed outlines and values marked * are assumed.</p>
+
+<div class="panel">
+  <div class="drawing"><svg id="cup" viewBox="0 0 900 462" role="img" aria-labelledby="t d"><title id="t">Cross-section of the 2021 trampoline cup with midvalve piston</title><desc id="d">Scaled section showing the cup wall and trampoline seat, stop collar, hub, shaft, float spring, compression stack and the midvalve piston, with heights from the cup bottom.</desc></svg></div>
+  <div class="controls">
+    <span>Stack position:</span>
+    <div class="seg" role="group" aria-label="Stack position">
+      <button data-st="rest" aria-pressed="true">At rest: on piston</button><button data-st="rim" aria-pressed="false">On seat: 0.50 off piston</button><button data-st="open" aria-pressed="false">Fully open: on stop collar, 1.00 off piston</button>
+    </div>
+    <label style="flex:1 1 320px;min-width:260px">Opening <input type="range" id="opening" min="0" max="1" step="0.01" value="0" style="flex:1" aria-describedby="opv"> <span id="opv" class="readout" style="min-width:4.5em;text-align:right">0.00 mm</span> <span id="oph" style="font-weight:600;min-width:8.5em"></span></label>
+    <label><input type="checkbox" id="full" checked> Show full compression stack</label>
+    <label><input type="checkbox" id="spr" checked> Show spring</label>
+  </div>
+  <p class="readout" id="readout" style="margin:10px 0 0"></p>
+  <div class="legend"><span><i style="background:var(--metal)"></i>Cup and tap (section)</span><span><i style="background:var(--metal);opacity:.55"></i>Midvalve piston (schematic)</span><span><i style="background:var(--shim)"></i>Compression stack</span><span><i style="background:var(--spring)"></i>Float spring 48600382</span><span><i style="background:var(--float)"></i>Float</span><span><i style="background:var(--gap)"></i>Trampoline travel</span></div>
+</div>
+
+<h2>Dimensions</h2>
+<div class="panel tablewrap"><table>
+ <thead><tr><th>Feature</th><th>Value</th><th>Source</th></tr></thead><tbody>
+ <tr><td>Construction</td><td class="n">One piece</td><td><span class="tag">cup and tap machined as one part</span></td></tr>
+ <tr><td>Trampoline seat face (cup height)</td><td class="n">6.00</td><td><span class="tag m">measured</span></td></tr>
+ <tr><td>Trampoline seat inner diameter</td><td class="n">Ø 22.0</td><td><span class="tag m">measured</span></td></tr>
+ <tr><td>Trampoline seat outer diameter (cup OD)</td><td class="n">Ø 23.90</td><td><span class="tag m">measured</span></td></tr>
+ <tr><td>Trampoline seat width</td><td class="n">0.95</td><td><span class="tag">derived</span></td></tr>
+ <tr><td>Stop collar diameter</td><td class="n">Ø 10</td><td><span class="tag">stated by owner, to confirm</span></td></tr>
+ <tr><td>Stop collar top</td><td class="n">5.50</td><td><span class="tag">stated by owner: 0.50 below the trampoline seat</span></td></tr>
+ <tr><td>Trampoline travel (trampoline seat to stop collar)</td><td class="n">0.50</td><td><span class="tag">stated by owner</span></td></tr>
+ <tr><td>Cup floor</td><td class="n">1.50*</td><td><span class="tag a">assumed: 2025 base thickness</span></td></tr>
+ <tr><td>Hub diameter (8 mm-ID shims ride on it)</td><td class="n">Ø 8</td><td><span class="tag">stated by owner</span></td></tr>
+ <tr><td>MV piston face, where the main stack seals at rest</td><td class="n">9.80</td><td><span class="tag">derived: trampoline seat 6.00 + float 0.50 + stack 3.30</span></td></tr>
+ <tr><td>Hub top (Ø 8 → Ø 6 step)</td><td class="n">9.80*</td><td><span class="tag a">assumed: level with piston face (recess depth = spacers)</span></td></tr>
+ <tr><td>Float spacers on the Ø 6 shaft, in the piston recess</td><td class="n">2× 6x9x0,20</td><td><span class="tag">count to confirm</span></td></tr>
+ <tr><td>Piston recess depth</td><td class="n">0.40*</td><td><span class="tag a">assumed: equal to spacers</span></td></tr>
+ <tr><td>Midvalve piston 48602139S outline</td><td class="n">Ø 30*</td><td><span class="tag a">schematic; OD estimated from photo proportions</span></td></tr>
+ <tr><td>Shaft diameter (piston ID, recessed for float spacers)</td><td class="n">Ø 6</td><td><span class="tag">stated by owner</span></td></tr>
+ <tr><td>Hollow bore, full length</td><td class="n">Ø 3*</td><td><span class="tag a">assumed diameter</span></td></tr>
+ <tr><td>Float, stack lifted off the trampoline seat at rest</td><td class="n">0.50</td><td><span class="tag">stated, owner's photo</span></td></tr>
+ <tr><td>Fully open, stack centre to MV piston face</td><td class="n">1.00</td><td><span class="tag">derived: float 0.50 + travel 0.50</span></td></tr>
+ <tr><td>Float spring 48600382, inner diameter (reference)</td><td class="n">Ø 11.50</td><td><span class="tag m">measured, one sample</span></td></tr>
+ <tr><td>Float spring outer diameter</td><td class="n">Ø 12.66</td><td><span class="tag m">ID + 2× wire; matches measured 12.66</span></td></tr>
+ <tr><td>Float spring wire diameter</td><td class="n">0.58</td><td><span class="tag m">measured</span></td></tr>
+ <tr><td>Float spring free length</td><td class="n">8.00</td><td><span class="tag m">measured, one sample</span></td></tr>
+ <tr><td>Float spring length at rest (floor to stack)</td><td class="n">5.00*</td><td><span class="tag a">derived from assumed floor 1.50</span></td></tr>
+ <tr><td>Float spring coil count</td><td class="n">5*</td><td><span class="tag a">not counted; 5 drawn</span></td></tr>
+ <tr><td>Compression stack height</td><td class="n">3.30</td><td><span class="tag">sum of sheet 34188U73</span></td></tr>
+ <tr><td>Vent hole in cup wall, behind the trampoline</td><td class="n">not drawn</td><td><span class="tag">observed; size and height not measured</span></td></tr>
+ <tr><td>Bypass hole in nut, into the hollow bore</td><td class="n">not drawn</td><td><span class="tag">observed; below the cup</span></td></tr>
+ </tbody></table>
+ <p class="muted" style="margin:10px 0 0;font-size:.9rem">Positions: At rest, the float spring (coil spring 48600382) preloads the main stack closed against the MV piston face, and the trampoline face shim (8x24x0,40) sits 0.50 above the trampoline seat. This 0.50 is the float. On seat, the whole stack has moved 0.50 axially without bending: the trampoline face shim rests on the trampoline seat, and the main stack is 0.50 off the MV piston face. Fully open, the clamp shim pushes the trampoline stack into the cup until its centre reaches the 10 mm diameter stop collar, which sits 0.50 below the trampoline seat. The stack centre is then 1.00 off the MV piston face: 0.50 float plus 0.50 travel.</p>
+ <p class="muted" style="margin:6px 0 0;font-size:.9rem">For illustration, the main stack is drawn without bending.</p>
+</div>
+</div>
+
+<script>
+const S=20, CX=400, BY=370;
+const X=r=>CX+r*S, Y=h=>BY-h*S;
+const M={rimF:6.0,shelf:5.5,floor:1.5,hub:9.8,pFace:9.8,pTop:13.8,pR:15,recR:4.6,recD:0.4,shaftTop:14.6,bore:1.5,shaftR:3,hubR:4,colR:5,landI:11,landO:11.95,float:0.5,sprI:5.75,sprO:6.33,wire:0.58,coils:5};
+const BACK=[[1,12,.40],[1,10,.15],[1,9,.15],[1,8,.15],[1,7,.10],[1,5,.15]];
+const FACE=[[2,6.5,.10],[2,8,.10],[2,9,.10],[2,10,.10],[2,11,.10],[2,12,.10],[2,13,.10],[2,14,.10],[6,15,.10]];
+const BACKH=BACK.reduce((a,[q,,t])=>a+q*t,0), STACK=3.30;
+const H="url(#hatch)", E="var(--metal-edge)", D='stroke-dasharray="4 3"';
+let st="rest", op=0, showFull=true, showSpr=true;
+const travel=M.rimF-M.shelf;
+const flOf=()=>Math.min(op,M.float), dOf=()=>Math.max(0,op-M.float);
+const baseOf=()=>M.rimF+M.float-flOf()-dOf();
+function dishZ(r,base){const d=dOf();if(d<=1e-9)return base;const u=(r-M.colR)/(M.landI-M.colR);const f=u<=0?0:(u>=1?1+1.5*(u-1):u*u*(1.5-0.5*u));return M.rimF-d+d*f}
+function rect(r0,r1,h0,h1,fill,stroke,extra=""){let o="";for(const s of[1,-1]){const xa=X(s*r0),xb=X(s*r1);o+=`<rect x="${Math.min(xa,xb).toFixed(1)}" y="${Y(h1).toFixed(1)}" width="${Math.abs(xb-xa).toFixed(1)}" height="${((h1-h0)*S).toFixed(1)}" fill="${fill}" stroke="${stroke}" stroke-width="0.8" ${extra}/>`}return o}
+function dshim(R,o,t,fill,base){const n=Math.max(2,Math.ceil((R-M.hubR)/0.25));const top=[],bot=[];for(let i=0;i<=n;i++){const r=M.hubR+(R-M.hubR)*i/n,z=dishZ(r,base)+o;top.push([r,z+t]);bot.push([r,z])}const pts=top.concat(bot.slice().reverse());let out="";for(const s of[1,-1]){out+=`<polygon points="${pts.map(([r,z])=>X(s*r).toFixed(1)+","+Y(z).toFixed(1)).join(" ")}" fill="${fill}" stroke="var(--panel)" stroke-width="0.6"/>`}return out}
+function hdim(h,label,xx,r0=12.2,dy=0){const y=Y(h),yt=y+dy;return `<polyline points="${X(r0)},${y} ${xx-14},${y} ${xx},${yt}" fill="none" stroke="var(--muted)" stroke-width="0.7" stroke-dasharray="3 3"/><text x="${xx+6}" y="${yt+4}" fill="var(--dim)" font-size="13" font-family="Barlow,sans-serif">${label}</text>`}
+function vdim(x,h0,h1,label,col,dy=0,ly){const y0=Y(h0),y1=Y(h1);return `<line x1="${x}" y1="${y0}" x2="${x}" y2="${y1}" stroke="${col}" stroke-width="1.2" marker-start="url(#a)" marker-end="url(#a)"/><text x="${x-8}" y="${ly===undefined?(y0+y1)/2+4+dy:ly}" text-anchor="end" fill="${col}" font-size="13" font-weight="600" font-family="Barlow,sans-serif">${label}</text>`}
+function ddim(r,h,label,h0){const y=Y(h),ys=h0===undefined?BY+3:Y(h0)+2;let e="";for(const sd of[-1,1]){e+=`<line x1="${X(sd*r)}" y1="${ys}" x2="${X(sd*r)}" y2="${y+5}" stroke="var(--muted)" stroke-width="0.6" stroke-dasharray="2 2"/>`}return e+`<line x1="${X(-r)}" y1="${y}" x2="${X(r)}" y2="${y}" stroke="var(--muted)" stroke-width="0.8" marker-start="url(#a2)" marker-end="url(#a2)"/><text x="${CX}" y="${y-5}" text-anchor="middle" fill="var(--dim)" font-size="13" font-family="Barlow,sans-serif">${label}</text>`}
+function spring(side,top){const w=M.wire,rm=(M.sprI+M.sprO)/2,n=M.coils,p=(top-M.floor-w)/(n-0.5);let o="";for(let k=0;k<n;k++){const h=M.floor+w/2+(k+(side>0?0.5:0))*p;o+=`<circle cx="${X(side*rm).toFixed(1)}" cy="${Y(h).toFixed(1)}" r="${(w/2*S).toFixed(1)}" fill="var(--spring)" stroke="var(--panel)" stroke-width="0.6"/>`}return o}
+function draw(){
+  const base=baseOf(), top=base+STACK, gap=M.pFace-top, fl=flOf(), dd=dOf(), flLeft=M.float-fl;
+  let s=`<defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="var(--metal)"/><line x1="0" y1="0" x2="0" y2="6" stroke="var(--metal-edge)" stroke-width="0.6" opacity="0.5"/></pattern>
+  <marker id="a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L5 5L1 9" fill="none" stroke="context-stroke" stroke-width="1.5"/></marker>
+  <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" fill="none" stroke="context-stroke" stroke-width="1.3"/></marker></defs>`;
+  s+=`<line x1="${X(-13.2)}" y1="${BY}" x2="${X(13.2)}" y2="${BY}" stroke="var(--muted)" stroke-width="0.8"/><text x="${X(-13.2)}" y="${BY+16}" fill="var(--muted)" font-size="12" font-family="Barlow,sans-serif">Cup bottom (datum 0)</text>`;
+  s+=`<line x1="${CX}" y1="${Y(15)}" x2="${CX}" y2="${BY+30}" stroke="var(--muted)" stroke-width="0.6" stroke-dasharray="8 3 2 3"/>`;
+  // cup and tap
+  s+=rect(M.bore,6,-1.2,0,H,E,'opacity="0.45" '+D);
+  {const P=[[M.bore,M.shaftTop],[M.shaftR,M.shaftTop],[M.shaftR,M.hub],[M.hubR,M.hub],[M.hubR,M.shelf],[M.colR,M.shelf],[M.colR,M.floor],[M.landI,M.floor],[M.landI,M.rimF],[M.landO,M.rimF],[M.landO,0],[M.bore,0]];
+   const SOL=[0,0,0,0,1,0,0,1,1,1,1,0];
+   for(const sd of[1,-1]){s+=`<polygon points="${P.map(([r,h])=>X(sd*r).toFixed(1)+','+Y(h).toFixed(1)).join(' ')}" fill="${H}" stroke="none"/>`;
+    for(let i=0;i<P.length;i++){const a=P[i],b=P[(i+1)%P.length];s+=`<line x1="${X(sd*a[0]).toFixed(1)}" y1="${Y(a[1]).toFixed(1)}" x2="${X(sd*b[0]).toFixed(1)}" y2="${Y(b[1]).toFixed(1)}" stroke="${E}" stroke-width="0.8" ${SOL[i]?'':D}/>`}}}
+  // piston (schematic) and float spacers
+  s+=rect(M.recR,M.pR,M.pFace,M.pTop,H,E,'opacity="0.55" '+D);
+  s+=rect(M.shaftR,M.recR,M.pFace+M.recD,M.pTop,H,E,'opacity="0.55" '+D);
+  s+=rect(M.shaftR,4.5,M.pFace,M.pFace+0.2,"var(--shim)","var(--panel)")+rect(M.shaftR,4.5,M.pFace+0.2,M.pFace+0.4,"var(--shim2)","var(--panel)");
+  let zz=[];for(let i=0;i<=24;i++){const r=-M.pR-0.4+(2*M.pR+0.8)*i/24;zz.push(`${X(r).toFixed(1)},${Y(M.pTop+(i%2?0.15:-0.15)).toFixed(1)}`)}
+  s+=`<polyline points="${zz.join(" ")}" fill="none" stroke="var(--muted)" stroke-width="0.8"/>`;
+  for(const sd of[1,-1]){s+=`<line x1="${X(sd*M.hubR)}" y1="${Y(M.shelf)}" x2="${X(sd*M.colR)}" y2="${Y(M.shelf)}" stroke="${E}" stroke-width="1.6"/>`}
+  // travel zone, float/gap bands
+  s+=rect(M.hubR,M.colR,M.shelf,M.rimF,"var(--gap)","none",'opacity="0.18"');
+  if(flLeft>0.005){s+=rect(M.landI,M.landO,M.rimF,M.rimF+flLeft,"var(--float)","none",'opacity="0.3"')}
+  if(fl>0.005){s+=rect(12.3,M.pR,M.pFace-fl,M.pFace,"var(--float)","none",'opacity="0.3"')}
+  if(dd>0.005){s+=rect(12.3,M.pR,top,top+dd,"var(--gap)","none",'opacity="0.5"')}
+  s+=`<line x1="${X(-12.6)}" y1="${Y(M.rimF)}" x2="${X(12.6)}" y2="${Y(M.rimF)}" stroke="var(--gap)" stroke-width="0.8" stroke-dasharray="2 3"/>`;
+  if(showSpr){const sp=dishZ((M.sprI+M.sprO)/2,base);s+=spring(1,sp)+spring(-1,sp)}
+  // stack
+  let o=0,i=0;
+  for(const[q,R,t] of BACK){for(let k=0;k<q;k++){s+=dshim(R,o,t,(i++%2)?"var(--shim2)":"var(--shim)",base);o+=t}}
+  if(showFull){let hh=base+BACKH;for(const[q,R,t] of FACE){for(let k=0;k<q;k++){s+=rect(M.hubR,R,hh,hh+t,(i++%2)?"var(--shim2)":"var(--shim)","var(--panel)");hh+=t}}}
+  const lbl=showFull?"Stack: 8x24x0,40 · 8x20/18/16x0,15 · 8x14x0,10 · 8x10x0,15 pivot · pyramid 8x13→28x0,10 ×2 · 6× 8x30x0,10":"Trampoline back stack: 8x24x0,40 · 8x20/18/16x0,15 · 8x14x0,10 · 8x10x0,15 pivot";
+  s+=`<text x="40" y="${Y(15.8)}" fill="var(--shim)" font-size="12" font-family="Barlow,sans-serif">${lbl}</text>`;
+  s+=`<text x="${X(3.4)}" y="${Y(14.6)}" fill="var(--muted)" font-size="12" font-family="Barlow,sans-serif">Ø 6 shaft, hub Ø 8, bore Ø 3*</text>`;
+  s+=`<text x="726" y="${Y(12)+4}" fill="var(--muted)" font-size="13" font-family="Barlow,sans-serif">MV piston 48602139S*</text>`;
+  s+=hdim(M.pFace,"Piston face 9.80 · hub*",720,15.3);s+=hdim(M.rimF,"Trampoline seat 6.00",720,12.2,-9);s+=hdim(M.shelf,"Stop collar 5.50",720);s+=hdim(M.floor,"Floor 1.50*",720);
+  {const tl=Math.max(0,travel-dd);if(tl>0.01){s+=vdim(X(-7.4),M.shelf,M.shelf+tl,`Travel ${tl.toFixed(2)}`,"var(--gap)",0,269)}else{s+=`<line x1="${X(-7.4)-5}" y1="${Y(M.shelf)}" x2="${X(-7.4)+5}" y2="${Y(M.shelf)}" stroke="var(--gap)" stroke-width="1.4"/><text x="${X(-7.4)-8}" y="269" text-anchor="end" fill="var(--gap)" font-size="13" font-weight="600" font-family="Barlow,sans-serif">Travel 0.00</text>`}}
+  if(flLeft>0.005){s+=vdim(X(-12.4),M.rimF,M.rimF+flLeft,`Float ${flLeft.toFixed(2)}`,"var(--float)")}
+  if(gap>0.005){s+=vdim(X(-15.8),top,M.pFace,`Gap ${gap.toFixed(2)}`,dd>0.005?"var(--gap)":"var(--float)")}
+  s+=ddim(M.colR,-2.0,"Stop collar Ø 10",M.shelf)+ddim(M.landI,-2.8,"Trampoline seat ID Ø 22.0")+ddim(M.landO,-3.6,"Trampoline cup OD Ø 23.90");
+  s+=`<text x="${X(6.4)}" y="${Y(4.0)+4}" fill="var(--muted)" font-size="12" font-family="Barlow,sans-serif">Float spring</text>`;
+  const svg=document.getElementById("cup");svg.innerHTML=svg.querySelector("title").outerHTML+svg.querySelector("desc").outerHTML+s;
+  const R={rest:`At rest: main stack on the MV piston face, trampoline face shim <b class="f">0.50</b> above the trampoline seat. Float <b class="f">0.50</b> + trampoline travel <b>${travel.toFixed(2)}</b> = <b>${(travel+M.float).toFixed(2)} mm</b> to the stop collar.`,
+    rim:`On seat: trampoline face shim on the trampoline seat, main stack <b class="f">0.50</b> off the MV piston face. Trampoline travel left <b>${travel.toFixed(2)}</b>.`,
+    open:`Fully open: trampoline stack on the stop collar, stack centre <b>${(travel+M.float).toFixed(2)}</b> off the MV piston face (float <b class="f">0.50</b> + travel <b>${travel.toFixed(2)}</b>).`};
+  const mid=op<M.float?`Floating: main stack <b class="f">${fl.toFixed(2)}</b> off the MV piston face, trampoline face shim <b class="f">${flLeft.toFixed(2)}</b> above the trampoline seat.`:`Trampoline travel: trampoline face shim on the trampoline seat, stack centre <b>${(fl+dd).toFixed(2)}</b> off the MV piston face, <b>${(travel-dd).toFixed(2)}</b> travel left to the stop collar.`;
+  const key=op<0.0005?"rest":(Math.abs(op-M.float)<0.0005?"rim":(op>M.float+travel-0.0005?"open":null));
+  document.getElementById("readout").innerHTML=key?R[key]:mid;
+  document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.st===key));
+  const sl=document.getElementById("opening");if(sl&&Math.abs(sl.value-op)>1e-6)sl.value=op;document.getElementById("opv").textContent=op.toFixed(2)+" mm";
+  {const pc=op/(M.float+travel)*100,h=M.float/(M.float+travel)*100,fa="color-mix(in srgb, var(--float) 28%, transparent)",ga="color-mix(in srgb, var(--gap) 28%, transparent)";
+   const tick=`linear-gradient(to right, transparent calc(${h}% - 1px), var(--panel) calc(${h}% - 1px) calc(${h}% + 1px), transparent calc(${h}% + 1px))`;
+   const trk=`linear-gradient(to right, var(--float) 0 ${Math.min(pc,h)}%, ${fa} ${Math.min(pc,h)}% ${h}%, var(--gap) ${h}% ${Math.max(pc,h)}%, ${ga} ${Math.max(pc,h)}% 100%)`;
+   const inTr=op>M.float+0.0005,ph=inTr?"var(--gap)":"var(--float)";
+   if(sl){sl.style.setProperty("--trk",tick+", "+trk);sl.style.setProperty("--ph",ph)}
+   const o=document.getElementById("oph");o.textContent=inTr?"Trampoline travel":"Float";o.style.color=ph;}
+}
+const OPS={rest:0,rim:0.5,open:1.0};
+document.querySelectorAll(".seg button").forEach(b=>b.onclick=()=>{op=OPS[b.dataset.st];draw()});
+document.getElementById("opening").oninput=e=>{op=parseFloat(e.target.value);draw()};
+document.getElementById("full").onchange=e=>{showFull=e.target.checked;draw()};
+document.getElementById("spr").onchange=e=>{showSpr=e.target.checked;draw()};
+draw();
+</script>
+</body>
+</html>
